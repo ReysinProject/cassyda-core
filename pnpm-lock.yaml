@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       typescript:
         specifier: ^5.6.3
@@ -14,11 +21,22 @@ importers:
 
 packages:
 
+  consola@3.2.3:
+    resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
+    engines: {node: ^14.18.0 || >=16.10.0}
+
   typescript@5.6.3:
     resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
 snapshots:
 
+  consola@3.2.3: {}
+
   typescript@5.6.3: {}
+
+  zod@3.23.8: {}
