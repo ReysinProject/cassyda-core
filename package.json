@@ -1,0 +1,24 @@
+{
+  "name": "cassyda-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "cassyda-core",
+    "fetch",
+    "data",
+    "query",
+    "api",
+    "rest",
+    "graphql",
+    "json"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
