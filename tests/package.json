@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@reysin/cassida": "file:../dist"
+    "@reysin/cassida": "file:.."
   },
   "devDependencies": {
     "typescript": "^5.6.3",

@@ -1,15 +1,16 @@
-import {defineApi} from "../../src/request/registry/defineApi";
+import {z} from "zod";
+import {defineApi} from "@reysin/cassida";
 
 console.log("test")
 
-// url
-// method
-// base url
-// headers
-// staleTime
-// propsScheme
-// returnScheme
-//
-// propsType : post->body|data get->url
-
-defineApi()
+defineApi({
+	url: "/api/v2/users",
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  staleTime: 30000,
+  propsType: "get",
+  propsScheme: z.object({}),
+  returnScheme: z.object({}),
+})

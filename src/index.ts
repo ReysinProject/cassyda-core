@@ -1,0 +1,1 @@
+export {defineApi} from './request/registry/defineApi';

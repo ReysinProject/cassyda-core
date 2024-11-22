@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "target": "es6",
     "module": "esnext",
-    "target": "es2023",
-    "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src/**/*"
