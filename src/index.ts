@@ -1,1 +1,2 @@
-export {defineApi} from './request/registry/defineApi';
+export {defineApi} from './api/defineApi';
+export {CassidaClient} from './core/CassidaClient';

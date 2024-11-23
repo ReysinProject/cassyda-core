@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
     "outDir": "./dist",
+    "module": "commonjs",
+    "target": "es2019",
     "strict": true,
+    "declaration": true,
+    "declarationMap": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "moduleResolution": "node",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   },
   "include": [
     "src/**/*"

@@ -1,16 +1,24 @@
+import {CassidaClient, defineApi} from "@reysin/cassida";
 import {z} from "zod";
-import {defineApi} from "@reysin/cassida";
 
-console.log("test")
-
-defineApi({
-	url: "/api/v2/users",
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
+const getUserEndpoint = defineApi({
+  path: '/users/:id',
+  method: 'GET',
+  query: z.object({
+    include: z.array(z.string()).optional(),
+    fields: z.array(z.string()).optional(),
+  }),
+  response: z.object({
+    id: z.number(),
+    name: z.string(),
+    email: z.string().email(),
+    createdAt: z.string().datetime(),
+  }),
+  cache: {
+    ttl: 5000,
+    tags: ['user'],
   },
-  staleTime: 30000,
-  propsType: "get",
-  propsScheme: z.object({}),
-  returnScheme: z.object({}),
-})
+});
+
+console.log(getUserEndpoint);
+console.log(CassidaClient.getInstance());
