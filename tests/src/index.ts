@@ -2,23 +2,22 @@ import {CassidaClient, defineApi} from "@reysin/cassida";
 import {z} from "zod";
 
 const getUserEndpoint = defineApi({
-  path: '/users/:id',
+  path: 'https://catfact.ninja/fact',
   method: 'GET',
-  query: z.object({
-    include: z.array(z.string()).optional(),
-    fields: z.array(z.string()).optional(),
-  }),
   response: z.object({
-    id: z.number(),
-    name: z.string(),
-    email: z.string().email(),
-    createdAt: z.string().datetime(),
+    length: z.number(),
+    fact: z.string(),
   }),
   cache: {
     ttl: 5000,
-    tags: ['user'],
+    tags: ['cat', 'fact'],
   },
 });
 
-console.log(getUserEndpoint);
-console.log(CassidaClient.getInstance());
+const client = CassidaClient.getInstance();
+
+client.subscribe(getUserEndpoint, [
+  "fact",
+]).then((response) => {
+    console.log(typeof response);
+})

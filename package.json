@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "build_tests": "tsc -p tsconfig.json && cd tests && pnpm install --force && pnpm start"
+    "build_tests": "tsc -p tsconfig.json && cd tests && pnpm install --force && pnpm start",
+    "start_tests": "cd tests && pnpm start"
   },
   "files": [
     "/dist"
