@@ -1,5 +1,8 @@
 import { StorageStrategy } from "@/types";
 
+/**
+ * Options for configuring cookies.
+ */
 interface CookieOptions {
     path?: string;
     domain?: string;
@@ -10,9 +13,23 @@ interface CookieOptions {
     httpOnly?: boolean;
 }
 
+/**
+ * A storage strategy that uses cookies to store data.
+ * @implements {StorageStrategy}
+ */
 export class CookieStorageStrategy implements StorageStrategy {
+    /**
+     * The default options for cookies.
+     * @type {CookieOptions}
+     * @private
+     * @readonly
+     */
     private readonly defaultOptions: CookieOptions;
 
+    /**
+     * Creates an instance of CookieStorageStrategy.
+     * @param {CookieOptions} [options={}] - The options for configuring cookies.
+     */
     constructor(options: CookieOptions = {}) {
         this.defaultOptions = {
             path: '/',
@@ -22,6 +39,11 @@ export class CookieStorageStrategy implements StorageStrategy {
         };
     }
 
+    /**
+     * Gets the value of a cookie by its key.
+     * @param {string} key - The key of the cookie.
+     * @returns {Promise<string | null>} - A promise that resolves to the value of the cookie or null if not found.
+     */
     async getItem(key: string): Promise<string | null> {
         const cookies = document.cookie.split(';');
         const cookie = cookies.find(c => c.trim().startsWith(`${key}=`));
@@ -38,6 +60,13 @@ export class CookieStorageStrategy implements StorageStrategy {
         }
     }
 
+    /**
+     * Sets the value of a cookie.
+     * @param {string} key - The key of the cookie.
+     * @param {string} value - The value of the cookie.
+     * @param {CookieOptions} [options] - Additional options for the cookie.
+     * @returns {Promise<void>} - A promise that resolves when the cookie is set.
+     */
     async setItem(key: string, value: string, options?: CookieOptions): Promise<void> {
         const mergedOptions = { ...this.defaultOptions, ...options };
         let cookie = `${key}=${encodeURIComponent(value)}`;
@@ -69,6 +98,11 @@ export class CookieStorageStrategy implements StorageStrategy {
         document.cookie = cookie;
     }
 
+    /**
+     * Removes a cookie by its key.
+     * @param {string} key - The key of the cookie to remove.
+     * @returns {Promise<void>} - A promise that resolves when the cookie is removed.
+     */
     async removeItem(key: string): Promise<void> {
         // Set expires to a past date to remove the cookie
         await this.setItem(key, '', {
@@ -78,6 +112,10 @@ export class CookieStorageStrategy implements StorageStrategy {
         });
     }
 
+    /**
+     * Clears all cookies.
+     * @returns {Promise<void>} - A promise that resolves when all cookies are cleared.
+     */
     async clear(): Promise<void> {
         const cookies = document.cookie.split(';');
 

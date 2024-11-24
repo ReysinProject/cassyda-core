@@ -1,7 +1,7 @@
 {
   "name": "@cassida/core",
   "version": "0.1.0",
-  "description": "",
+  "description": "A flexible and extensible authentication library for TypeScript applications.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
