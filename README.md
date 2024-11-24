@@ -7,6 +7,15 @@ A flexible and extensible authentication library for TypeScript applications.
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ReysinProject/cassyda-core)
 ![GitHub contributors](https://img.shields.io/github/contributors-anon/ReysinProject/cassyda-core)
 
+
+---
+
+<p align="center">⚠️ Please note that the package is in the experimental development phase. ⚠️</p>
+<p align="center">⚠️ You may use it at your own risk ⚠️. </p>
+
+---
+
+
 ## Overview
 This authentication library provides a robust, scheme-based authentication system supporting multiple providers, guards, and storage strategies. It's designed to be framework-agnostic and easily extensible.
 
