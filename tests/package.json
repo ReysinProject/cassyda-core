@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@reysin/cassida": "file:..",
-    "zod": "^3.23.8"
+    "@cassida/core": "file:.."
   },
   "devDependencies": {
     "ts-node": "^10.9.2",

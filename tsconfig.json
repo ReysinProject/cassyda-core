@@ -1,17 +1,56 @@
 {
   "compilerOptions": {
+    // Module Configuration
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+
+    // Build Configuration
     "outDir": "./dist",
-    "module": "commonjs",
-    "target": "es2019",
-    "strict": true,
     "declaration": true,
-    "declarationMap": true,
+    "sourceMap": true,
+
+    // Type Checking
+    "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    // Additional Checks
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Module Resolution
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+
+    // Paths Configuration
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // Remove problematic options
+    "isolatedModules": false,
+    "composite": false,
+    "incremental": false
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
   ]
 }
