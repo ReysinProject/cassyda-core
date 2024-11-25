@@ -17,12 +17,11 @@ A flexible and extensible authentication library for TypeScript applications.
 
 
 ## Overview
-This authentication library provides a robust, scheme-based authentication system supporting multiple providers, guards, and storage strategies. It's designed to be framework-agnostic and easily extensible.
+This authentication library provides a robust, scheme-based authentication system supporting multiple providers, and storage strategies. It's designed to be framework-agnostic and easily extensible.
 
 ## Features
 - 🔐 Multiple authentication schemes (OAuth2, JWT, Credentials)
 - 👥 Role-based access control
-- 🛡️ Flexible guard system
 - 📦 Customizable storage strategies
 - 🔄 Token refresh handling
 - 🎯 Provider-agnostic design
@@ -47,10 +46,6 @@ const config: AuthConfig = {
     default: {
       id: 'default',
       name: 'Default Scheme',
-      guards: [
-        new AuthenticatedGuard(),
-        new RoleGuard(['user'])
-      ],
       providers: [
         new OAuth2Provider({
           clientId: 'your-client-id',
@@ -75,31 +70,14 @@ const auth = new AuthClient(config);
 ### Authentication Schemes
 Schemes define how authentication works for different parts of your application. Each scheme can have its own:
 - Providers (OAuth2, Credentials, etc.)
-- Guards (Role-based, Permission-based)
 - Token handling options
 
 ```typescript
 interface AuthScheme {
   id: string;
   name: string;
-  guards: AuthGuard[];
   providers: AuthProvider[];
   options: AuthSchemeOptions;
-}
-```
-
-### Guards
-Guards protect routes or resources by implementing access control logic.
-
-```typescript
-interface AuthGuard {
-  canActivate(): Promise<boolean>;
-}
-
-// Example: Role-based guard
-const adminGuard = new RoleGuard(['admin']);
-if (await auth.checkGuard()) {
-  // User has admin access
 }
 ```
 
@@ -153,33 +131,12 @@ await auth.login({
 });
 ```
 
-3. **Guard Checks**
-```typescript
-if (await auth.checkGuard()) {
-  // Access granted
-} else {
-  // Access denied
-}
-```
-
-4. **Logout**
+3**Logout**
 ```typescript
 await auth.logout();
 ```
 
 ## Advanced Usage
-
-### Custom Guard Implementation
-```typescript
-class CustomGuard implements AuthGuard {
-  constructor(private requiredPermissions: string[]) {}
-
-  async canActivate(): Promise<boolean> {
-    // Your custom guard logic
-    return true;
-  }
-}
-```
 
 ### Custom Storage Strategy
 ```typescript
@@ -218,7 +175,6 @@ function useAuth() {
     isAuthenticated,
     login: auth.login.bind(auth),
     logout: auth.logout.bind(auth),
-    checkGuard: auth.checkGuard.bind(auth)
   };
 }
 ```
@@ -235,13 +191,12 @@ The main class for interacting with the authentication system.
 
 #### Methods
 
-| Method | Description | Parameters | Return Type |
-|--------|-------------|------------|-------------|
-| `login` | Authenticate user | `AuthorizeOptions` | `Promise<AuthResponse>` |
-| `logout` | End session | - | `Promise<void>` |
-| `checkGuard` | Verify access | - | `Promise<boolean>` |
-| `isAuthenticated` | Check auth status | - | `Promise<boolean>` |
-| `getAccessToken` | Get current token | - | `Promise<string>` |
+| Method            | Description       | Parameters         | Return Type             |
+|-------------------|-------------------|--------------------|-------------------------|
+| `login`           | Authenticate user | `AuthorizeOptions` | `Promise<AuthResponse>` |
+| `logout`          | End session       | -                  | `Promise<void>`         |
+| `isAuthenticated` | Check auth status | -                  | `Promise<boolean>`      |
+| `getAccessToken`  | Get current token | -                  | `Promise<string>`       |
 
 ### Contributing
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
