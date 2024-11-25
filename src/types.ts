@@ -85,12 +85,6 @@ export interface AuthScheme {
     name: string;
 
     /**
-     * The guards associated with the scheme.
-     * @type {AuthGuard[]}
-     */
-    guards: AuthGuard[];
-
-    /**
      * The providers associated with the scheme.
      * @type {AuthProvider[]}
      */
@@ -240,17 +234,6 @@ export interface AuthResponse {
      * @type {any}
      */
     user?: any;
-}
-
-/**
- * Interface for an authentication guard.
- */
-export interface AuthGuard {
-    /**
-     * Determines if the guard can activate.
-     * @returns {Promise<boolean>} - A promise that resolves to true if the guard can activate, false otherwise.
-     */
-    canActivate(): Promise<boolean>;
 }
 
 /**

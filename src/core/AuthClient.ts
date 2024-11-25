@@ -102,37 +102,4 @@ export class AuthClient {
             );
         }
     }
-
-    /**
-     * Checks all guards defined in the current scheme.
-     * @returns {Promise<boolean>} - Returns true if all guards pass.
-     * @throws {Error} - If no scheme is selected.
-     */
-    public async checkGuard(): Promise<boolean> {
-        if (!this.currentScheme) {
-            throw new Error('No authentication scheme selected');
-        }
-
-        const guards = this.currentScheme.guards;
-
-        // If no guards defined, consider it open access
-        if (!guards || guards.length === 0) {
-            return true;
-        }
-
-        try {
-            // Check each guard in sequence
-            for (const guard of guards) {
-                const canActivate = await guard.canActivate();
-                if (!canActivate) {
-                    return false; // Stop checking if any guard fails
-                }
-            }
-
-            return true; // All guards passed
-        } catch (error) {
-            console.error('Guard check failed:', error);
-            throw new Error(`Failed to verify guards: ${error}`);
-        }
-    }
 }
